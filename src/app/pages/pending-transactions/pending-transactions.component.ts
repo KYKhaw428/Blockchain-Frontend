@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BlockchainService } from 'src/app/services/blockchain.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-pending-transactions',
@@ -10,7 +11,7 @@ export class PendingTransactionsComponent implements OnInit {
 
   public pendingTransactions = [];
 
-  constructor(private blockchainService: BlockchainService) {
+  constructor(private blockchainService: BlockchainService, private router: Router, private route: ActivatedRoute) {
     this.pendingTransactions = blockchainService.getPendingTransactions();
    }
 
@@ -19,5 +20,6 @@ export class PendingTransactionsComponent implements OnInit {
 
   minePendingTransactions(){
     this.blockchainService.minePendingTransactions();
+    this.router.navigate(['/']);
   }
 }
